@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>LYCHEE FOOD AND MORE | المنيو الإلكتروني</title>
+<meta content="المنيو الإلكتروني لمطعم Lychee Food &amp; More" name="description"/>
+<style>
+:root{--orange:#f76502;--orange2:#ff8a18;--black:#0b0b0b;--cream:#fff8f1;--line:#eee2d8;--muted:#777}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Tajawal","Arial",sans-serif;background:linear-gradient(#fafafa,#fff8f1);color:#151515}
+.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 0%,#242424 0,#0b0b0b 55%,#050505 100%);color:#fff;padding:24px 18px 30px;text-align:center;border-bottom:5px solid var(--orange)}
+.hero:before,.hero:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:var(--orange);filter:blur(90px);opacity:.16}.hero:before{right:-100px;top:-120px}.hero:after{left:-100px;bottom:-150px}
+.brand-logo{position:relative;z-index:1;width:min(310px,72vw);height:auto;display:block;margin:0 auto -5px;filter:drop-shadow(0 14px 24px #000)}
+.hero h1{position:relative;z-index:1;font-size:20px;margin:0;font-weight:800}.hero p{position:relative;z-index:1;margin:7px 0 0;color:#ddd;font-size:14px}
+.hero-badges{position:relative;z-index:1;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}.badge{background:#ffffff12;border:1px solid #ffffff22;border-radius:999px;padding:8px 13px;font-size:12px}
+.wrap{max-width:1180px;margin:auto;padding:0 16px 30px}.search{position:sticky;top:0;z-index:20;padding:14px 0 8px;background:linear-gradient(#fafafa 75%,transparent)}
+.search-box{position:relative}.search input{width:100%;border:1px solid #e8ddd4;background:#fff;border-radius:18px;padding:15px 50px 15px 18px;font-size:15px;outline:none;box-shadow:0 8px 25px #0000000b}.search-icon{position:absolute;right:17px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--orange)}
+.tabs{display:flex;gap:8px;overflow:auto;padding:9px 0 15px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tabs button{border:1px solid #eadfd7;background:#fff;color:#222;border-radius:14px;padding:11px 15px;white-space:nowrap;cursor:pointer;font-weight:700;box-shadow:0 3px 12px #00000007}.tabs button.active{background:linear-gradient(135deg,var(--orange),var(--orange2));border-color:var(--orange);color:#fff;box-shadow:0 7px 18px #f7650240}
+.feature{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:3px 0 28px}.feature div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center}.feature b{display:block;font-size:13px}.feature span{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.section{margin:30px 0}.section h2{display:flex;align-items:center;gap:10px;margin:0 0 15px;font-size:23px}.section h2:before{content:"";width:7px;height:28px;border-radius:8px;background:linear-gradient(var(--orange),var(--orange2))}.section h2:after{content:"";height:1px;background:var(--line);flex:1}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{position:relative;background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 7px 25px #0000000b;transition:.22s}.card:hover{transform:translateY(-4px);box-shadow:0 14px 35px #00000018}.card-img{width:100%;height:160px;object-fit:cover;display:block;background:#f2ece7}.card-body{padding:14px 14px 15px}.name{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.name h3{margin:0;font-size:17px}.en{display:block;color:var(--orange);font-size:12px;margin-top:4px;direction:ltr;text-align:right}.price{font-weight:900;color:#fff;white-space:nowrap;font-size:16px;background:var(--orange);border-radius:10px;padding:6px 9px;line-height:1}.desc{color:var(--muted);font-size:12px;line-height:1.7;margin:10px 0 0}.variants{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.pill{background:#fff1e7;border:1px solid #ffe0c8;padding:7px 9px;border-radius:10px;font-size:11px}.pill b{color:var(--orange)}
+.tag{position:absolute;top:10px;right:10px;background:#0b0b0bcc;color:#fff;border:1px solid #ffffff33;padding:6px 8px;border-radius:9px;font-size:10px}.empty{text-align:center;padding:50px;color:#888;display:none}
+footer{position:relative;overflow:hidden;background:#090909;color:#fff;margin-top:30px;padding:34px 18px;text-align:center;border-top:4px solid var(--orange)}footer:before{content:"";position:absolute;inset:auto -10% -100px;height:170px;background:var(--orange);filter:blur(90px);opacity:.12}.footer-brand{font-size:22px;font-weight:900;letter-spacing:2px}.phone{font-size:18px;font-weight:900;color:#ff8a38;margin-top:10px}.address{margin-top:8px;font-size:12px;color:#aaa}.cta{display:inline-block;margin-top:18px;background:var(--orange);color:#fff;text-decoration:none;font-weight:900;padding:12px 24px;border-radius:999px;box-shadow:0 8px 22px #f7650240}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.grid{grid-template-columns:repeat(2,1fr);gap:10px}.card-img{height:130px}.card-body{padding:11px}.name h3{font-size:15px}.price{font-size:14px}.feature{grid-template-columns:repeat(3,1fr)}.feature div{padding:10px 5px}.feature b{font-size:11px}.feature span{font-size:9px}.section h2{font-size:20px}}
+@media(max-width:420px){.grid{grid-template-columns:1fr 1fr}.card-img{height:120px}.wrap{padding:0 10px 25px}.tabs button{padding:10px 12px}.brand-logo{width:78vw}}
+</style>
+</head>
+<body>
+<header class="hero">
+    <!-- صورة اللوجو الرئيسية (العربية) -->
+    <img alt="LYCHEE FOOD AND MORE" class="brand-logo" src="images/download.png"/>
+    <h1>المنيو الإلكتروني</h1>
+    <p>طعم مختلف • جودة تستحقها</p>
+    <div class="hero-badges">
+        <div class="badge">🍔 فاست فود</div>
+        <div class="badge">🥙 كريب طازج</div>
+        <div class="badge">🍕 بيتزا يومية</div>
+    </div>
+</header>
+<main class="wrap">
+<div class="search"><div class="search-box"><input id="search" placeholder="ابحث عن صنف..." type="search"/><span class="search-icon">⌕</span></div></div>
+<div class="tabs" id="tabs">
+<button class="active" data-cat="all">الكل</button>
+<button data-cat="mix">Mix Crepe</button>
+<button data-cat="regular">Regular Crepe</button>
+<button data-cat="smash">Smash Burger</button>
+<button data-cat="box">Fries Box</button>
+<button data-cat="fries">Fries</button>
+<button data-cat="sandwich">Sandwich</button>
+<button data-cat="chicken-sandwich">Chicken Sandwich</button>
+<button data-cat="pizza-roll">Pizza Roll</button>
+<button data-cat="pizza">Pizza</button>
+<button data-cat="extra">Sauce &amp; Extra</button>
+</div><div class="feature"><div><b>⚡ تحضير سريع</b><span>Fresh &amp; Fast</span></div><div><b>🔥 أصناف مميزة</b><span>Best Sellers</span></div><div><b>🧡 طعم ليتشي</b><span>Made with Love</span></div></div>
+<div id="menu">
+<section class="section" data-section="mix">
+<h2>Mix Crepe</h2><div class="grid">
+<article class="card" data-search="الوحش the monster"><div class="card-body"><div class="name"><div><h3>الوحش</h3><span class="en">The monster</span></div><span class="price">130</span></div><p class="desc">قطع الاستربس الحارة، شيش، هوت دوج، موتزاريلا، صوص الشيدر، صوص ليتشي المميز.</p></div><span class="tag">Signature</span></article>
+<article class="card" data-search="الصاروخ the rocket"><div class="card-body"><div class="name"><div><h3>الصاروخ</h3><span class="en">The rocket</span></div><span class="price">130</span></div></div><span class="tag">Signature</span></article>
+<article class="card" data-search="بلو استربس blue strips"><div class="card-body"><div class="name"><div><h3>بلو استربس</h3><span class="en">Blue strips</span></div><span class="price">130</span></div></div><span class="tag">Signature</span></article>
+<article class="card" data-search="ميكس دجاج mix chicken"><div class="card-body"><div class="name"><div><h3>ميكس دجاج</h3><span class="en">Mix Chicken</span></div><span class="price">120</span></div></div><span class="tag">Signature</span></article>
+<article class="card" data-search="ميكس ميت meat mix"><div class="card-body"><div class="name"><div><h3>ميكس ميت</h3><span class="en">Meat mix</span></div><span class="price">120</span></div></div><span class="tag">Signature</span></article>
+<article class="card" data-search="كريب ليتشي lychee crepe"><div class="card-body"><div class="name"><div><h3>كريب ليتشي</h3><span class="en">Lychee crepe</span></div><span class="price">120</span></div></div><span class="tag">Signature</span></article>
+<article class="card" data-search="فيرال تيستي viral testy"><div class="card-body"><div class="name"><div><h3>فيرال تيستي</h3><span class="en">Viral testy</span></div><span class="price">120</span></div></div><span class="tag">Signature</span></article>
+<article class="card" data-search="هالبينو تشيكن رانش jalapino chicken ranch"><div class="card-body"><div class="name"><div><h3>هالبينو تشيكن رانش</h3><span class="en">Halapino chicken ranch</span></div><span class="price">120</span></div></div><span class="tag">Signature</span></article>
+</div>
+</section>
+<section class="section" data-section="regular">
+<h2>Regular Crepe</h2><div class="grid">
+<article class="card" data-search="زنجر سوبريم zinger supreme"><div class="card-body"><div class="name"><div><h3>زنجر سوبريم</h3><span class="en">Zinger supreme</span></div><span class="price">105</span></div></div><span class="tag">Crepe</span></article>
+<article class="card" data-search="ميكس جبن mix cheese"><div class="card-body"><div class="name"><div><h3>ميكس جبن</h3><span class="en">Mix cheese</span></div><span class="price">80</span></div></div><span class="tag">Crepe</span></article>
+<article class="card" data-search="كريب البطاطس fries crepe"><div class="card-body"><div class="name"><div><h3>كريب البطاطس</h3><span class="en">Fries crepe</span></div><span class="price">60</span></div></div><span class="tag">Crepe</span></article>
+<article class="card" data-search="تشيكن رانش chicken ranch"><div class="card-body"><div class="name"><div><h3>تشيكن رانش</h3><span class="en">Chicken ranch</span></div><span class="price">110</span></div></div><span class="tag">Crepe</span></article>
+<article class="card" data-search="كوردن بلو cordon bleu"><div class="card-body"><div class="name"><div><h3>كوردن بلو</h3><span class="en">Cordon bleu</span></div><span class="price">110</span></div></div><span class="tag">Crepe</span></article>
+<article class="card" data-search="فرايداي friday"><div class="card-body"><div class="name"><div><h3>فرايداي</h3><span class="en">Friday</span></div><span class="price">110</span></div></div><span class="tag">Crepe</span></article>
+<article class="card" data-search="تشيكن كرسبي chicken crispy"><div class="card-body"><div class="name"><div><h3>تشيكن كرسبي</h3><span class="en">Chicken crispy</span></div><span class="price">80</span></div></div><span class="tag">Crepe</span></article>
+<article class="card" data-search="تشيكن باربكيو chicken bbq"><div class="card-body"><div class="name"><div><h3>تشيكن باربكيو</h3><span class="en">Chicken BBQ</span></div><span class="price">110</span></div></div><span class="tag">Crepe</span></article>
+<article class="card" data-search="شيش طاووق shish tawak"><div class="card-body"><div class="name"><div><h3>شيش طاووق</h3><span class="en">Shish tawak</span></div><span class="price">110</span></div></div><span class="tag">Crepe</span></article>
+<article class="card" data-search="بانيه chicken bane"><div class="card-body"><div class="name"><div><h3>بانيه</h3><span class="en">Chicken bane</span></div><span class="price">80</span></div></div><span class="tag">Crepe</span></article>
+<article class="card" data-search="سو تشيلي chicken sweet chili"><div class="card-body"><div class="name"><div><h3>سو تشيلي</h3><span class="en">Chicken sweet chili</span></div><span class="price">110</span></div></div><span class="tag">Crepe</span></article>
+<article class="card" data-search="سوبر كرانشي super crunchy"><div class="card-body"><div class="name"><div><h3>سوبر كرانشي</h3><span class="en">Super Crunchy</span></div><span class="price">105</span></div></div><span class="tag">Crepe</span></article>
+</div>
+</section>
+<section class="section" data-section="smash">
+<h2>Smash Burger</h2><div class="grid">
+<article class="card" data-search="سماش برجر كلاسيك classic smash burger"><div class="card-body"><div class="name"><div><h3>سماش برجر كلاسيك</h3><span class="en">Classic Smash Burger</span></div></div><div class="variants"><span class="pill">Single <b>115</b></span><span class="pill">Double <b>140</b></span><span class="pill">Triple <b>165</b></span><span class="pill">Quatro <b>190</b></span></div></div><span class="tag">Smash</span></article>
+<article class="card" data-search="سماك سماش برجر smoked smash burger"><div class="card-body"><div class="name"><div><h3>سموكد سماش برجر</h3><span class="en">Smoked Smash Burger</span></div></div><div class="variants"><span class="pill">Single <b>120</b></span><span class="pill">Double <b>145</b></span><span class="pill">Triple <b>170</b></span><span class="pill">Quatro <b>195</b></span></div></div><span class="tag">Smash</span></article>
+</div>
+</section>
+<section class="section" data-section="box">
+<h2>Fries Box</h2><div class="grid">
+<article class="card" data-search="الوحش فرايز monster fries"><div class="card-body"><div class="name"><div><h3>الوحش فرايز</h3><span class="en">Monster fries</span></div><span class="price">80</span></div><p class="desc">بطاطس، قطع دجاج، هوت دوج، صوص شيدر، سويت شيلي، صوص رومي مدخن.</p></div><span class="tag">Box</span></article>
+<article class="card" data-search="تشيكن فرايز chicken fries"><div class="card-body"><div class="name"><div><h3>تشيكن فرايز</h3><span class="en">Chicken fries</span></div><span class="price">70</span></div></div><span class="tag">Box</span></article>
+<article class="card" data-search="سماش فرايز smash fries"><div class="card-body"><div class="name"><div><h3>سماش فرايز</h3><span class="en">Smash fries</span></div><span class="price">80</span></div><p class="desc">بطاطس، سماش برجر، صوص الشيدر، صوص الليتشي.</p></div><span class="tag">Box</span></article>
+<article class="card" data-search="هالبينو تشيز فرايز jalapeno cheesy fries"><div class="card-body"><div class="name"><div><h3>هالبينو تشيز فرايز</h3><span class="en">Jalapeno cheesy fries</span></div><span class="price">75</span></div></div><span class="tag">Box</span></article>
+<article class="card" data-search="تيستي فرايز testy fries"><div class="card-body"><div class="name"><div><h3>تيستي فرايز</h3><span class="en">Testy fries</span></div><span class="price">85</span></div><p class="desc">بطاطس، سماش برجر، صوص بيج تيستي، صوص الشيدر، بيف بيكون.</p></div><span class="tag">Box</span></article>
+</div>
+</section>
+<section class="section" data-section="fries">
+<h2>Fries</h2><div class="grid">
+<article class="card" data-search="بطاطس fries classic"><div class="card-body"><div class="name"><div><h3>بطاطس</h3><span class="en">Fries Classic</span></div><span class="price">25</span></div></div><span class="tag">Fries</span></article>
+<article class="card" data-search="بطاطس شيدر fries cheddar"><div class="card-body"><div class="name"><div><h3>بطاطس شيدر</h3><span class="en">Fries cheddar</span></div><span class="price">35</span></div></div><span class="tag">Fries</span></article>
+<article class="card" data-search="بطاطس صوص fries sauce"><div class="card-body"><div class="name"><div><h3>بطاطس صوص</h3><span class="en">Fries sauce</span></div><span class="price">35</span></div></div><span class="tag">Fries</span></article>
+</div>
+</section>
+<section class="section" data-section="sandwich">
+<h2>Sandwich</h2><div class="grid">
+<article class="card" data-search="بطاطس fries"><div class="card-body"><div class="name"><div><h3>بطاطس</h3><span class="en">Fries</span></div><span class="price">30</span></div></div><span class="tag">Sandwich</span></article>
+<article class="card" data-search="بطاطس شيدر cheese fries"><div class="card-body"><div class="name"><div><h3>بطاطس شيدر</h3><span class="en">Cheese Fries</span></div><span class="price">35</span></div></div><span class="tag">Sandwich</span></article>
+<article class="card" data-search="بطاطس هوت دوج hot dog fries"><div class="card-body"><div class="name"><div><h3>بطاطس هوت دوج</h3><span class="en">Hot Dog Fries</span></div><span class="price">60</span></div></div><span class="tag">Sandwich</span></article>
+<article class="card" data-search="فرايداي friday"><div class="card-body"><div class="name"><div><h3>فرايداي</h3><span class="en">Friday</span></div><span class="price">85</span></div></div><span class="tag">Sandwich</span></article>
+<article class="card" data-search="تشيكن فاهيتا chicken fajita"><div class="card-body"><div class="name"><div><h3>تشيكن فاهيتا</h3><span class="en">Chicken Fajita</span></div><span class="price">85</span></div></div><span class="tag">Sandwich</span></article>
+<article class="card" data-search="تشيكن بانيه chicken pane"><div class="card-body"><div class="name"><div><h3>تشيكن بانيه</h3><span class="en">Chicken Pane</span></div><span class="price">70</span></div></div><span class="tag">Sandwich</span></article>
+<article class="card" data-search="زنجر سوبريم zinger supreme"><div class="card-body"><div class="name"><div><h3>زنجر سوبريم</h3><span class="en">Zingar Supreme</span></div><span class="price">80</span></div></div><span class="tag">Sandwich</span></article>
+<article class="card" data-search="سوبر كرانشي super crunchy"><div class="card-body"><div class="name"><div><h3>سوبر كرانشي</h3><span class="en">Super Crunchy</span></div><span class="price">85</span></div></div><span class="tag">Sandwich</span></article>
+</div>
+</section>
+<section class="section" data-section="chicken-sandwich">
+<h2>Chicken Sandwich</h2><div class="grid">
+<article class="card" data-search="برجر دجاج مدخن smoked chicken burger"><div class="card-body"><div class="name"><div><h3>برجر دجاج مدخن</h3><span class="en">Smoked Chicken Burger</span></div><span class="price">120</span></div></div><span class="tag">Chicken</span></article>
+<article class="card" data-search="مشروم رانش ranch mushroom"><div class="card-body"><div class="name"><div><h3>مشروم رانش</h3><span class="en">Ranch Mushroom</span></div><span class="price">130</span></div></div><span class="tag">Chicken</span></article>
+<article class="card" data-search="عشاق الجبن cheesy lovers"><div class="card-body"><div class="name"><div><h3>عشاق الجبن</h3><span class="en">Cheesy Lovers</span></div><span class="price">130</span></div></div><span class="tag">Chicken</span></article>
+<article class="card" data-search="تشيكن ليتشي chicken lychee"><div class="card-body"><div class="name"><div><h3>تشيكن ليتشي</h3><span class="en">Chicken Lychee</span></div><span class="price">130</span></div></div><span class="tag">Chicken</span></article>
+</div>
+</section>
+<section class="section" data-section="pizza-roll">
+<h2>Pizza Roll</h2><div class="grid">
+<article class="card" data-search="تشيكن رانش chicken ranch"><div class="card-body"><div class="name"><div><h3>تشيكن رانش</h3><span class="en">Chicken Ranch</span></div><span class="price">120</span></div></div><span class="tag">Roll</span></article>
+<article class="card" data-search="تشيكن باربكيو chicken bbq"><div class="card-body"><div class="name"><div><h3>تشيكن باربكيو</h3><span class="en">Chicken BBQ</span></div><span class="price">120</span></div></div><span class="tag">Roll</span></article>
+<article class="card" data-search="تشيكن تشيز chicken cheese"><div class="card-body"><div class="name"><div><h3>تشيكن &amp; تشيز</h3><span class="en">Chicken &amp; Cheese</span></div><span class="price">120</span></div></div><span class="tag">Roll</span></article>
+<article class="card" data-search="تشيكن كرانشي chicken crunchy"><div class="card-body"><div class="name"><div><h3>تشيكن كرانشي</h3><span class="en">Chicken Crunchy</span></div><span class="price">120</span></div></div><span class="tag">Roll</span></article>
+<article class="card" data-search="سوبر ليتشي super lychee"><div class="card-body"><div class="name"><div><h3>سوبر ليتشي</h3><span class="en">Super Lychee</span></div><span class="price">120</span></div></div><span class="tag">Roll</span></article>
+</div>
+</section>
+<section class="section" data-section="pizza">
+<h2>Pizza</h2><div class="grid">
+<article class="card" data-search="بيتزا مارجريتا pizza margarita"><div class="card-body"><div class="name"><div><h3>بيتزا مارجريتا</h3><span class="en">Pizza Margarita</span></div></div><div class="variants"><span class="pill">M <b>145</b></span><span class="pill">L <b>165</b></span></div></div><span class="tag">Pizza</span></article>
+<article class="card" data-search="بيتزا تشيكن رانش pizza chicken ranch"><div class="card-body"><div class="name"><div><h3>بيتزا تشيكن رانش</h3><span class="en">Pizza Chicken Ranch</span></div></div><div class="variants"><span class="pill">M <b>160</b></span><span class="pill">L <b>185</b></span></div></div><span class="tag">Pizza</span></article>
+<article class="card" data-search="بيتزا تشيكن باربكيو pizza chicken bbq"><div class="card-body"><div class="name"><div><h3>بيتزا تشيكن باربكيو</h3><span class="en">Pizza Chicken BBQ</span></div></div><div class="variants"><span class="pill">M <b>165</b></span><span class="pill">L <b>190</b></span></div></div><span class="tag">Pizza</span></article>
+<article class="card" data-search="بيتزا بيبروني pizza pepperoni"><div class="card-body"><div class="name"><div><h3>بيتزا بيبروني</h3><span class="en">Pizza Pepperoni</span></div></div><div class="variants"><span class="pill">M <b>165</b></span><span class="pill">L <b>185</b></span></div></div><span class="tag">Pizza</span></article>
+<article class="card" data-search="بيتزا لحمة مفرومة ground beef pizza"><div class="card-body"><div class="name"><div><h3>بيتزا لحمة مفرومة</h3><span class="en">Ground Beef Pizza</span></div></div><div class="variants"><span class="pill">M <b>160</b></span><span class="pill">L <b>190</b></span></div></div><span class="tag">Pizza</span></article>
+<article class="card" data-search="بيتزا نص ونص half and half"><div class="card-body"><div class="name"><div><h3>بيتزا نص ونص</h3><span class="en">Half &amp; Half</span></div></div><div class="variants"><span class="pill">M <b>175</b></span><span class="pill">L <b>200</b></span></div></div><span class="tag">Pizza</span></article>
+<article class="card" data-search="سوبر كرانشي super crunchy"><div class="card-body"><div class="name"><div><h3>سوبر كرانشي</h3><span class="en">Super Crunchy</span></div></div><div class="variants"><span class="pill">M <b>170</b></span><span class="pill">L <b>200</b></span></div></div><span class="tag">Pizza</span></article>
+<article class="card" data-search="كواترو فورماجي quattro formaggi"><div class="card-body"><div class="name"><div><h3>كواترو فورماجي</h3><span class="en">Quattro Formaggi</span></div></div><div class="variants"><span class="pill">M <b>175</b></span><span class="pill">L <b>200</b></span></div></div><span class="tag">Pizza</span></article>
+<article class="card" data-search="سجق مدخن smoked sausage"><div class="card-body"><div class="name"><div><h3>سجق مدخن</h3><span class="en">Smoked Sausage</span></div></div><div class="variants"><span class="pill">M <b>165</b></span><span class="pill">L <b>185</b></span></div></div><span class="tag">Pizza</span></article>
+<article class="card" data-search="هوت دوج مدخن hot dog smokey"><div class="card-body"><div class="name"><div><h3>هوت دوج مدخن</h3><span class="en">Hot Dog Smokey</span></div></div><div class="variants"><span class="pill">M <b>155</b></span><span class="pill">L <b>180</b></span></div></div><span class="tag">Pizza</span></article>
+<article class="card" data-search="ميكس تشيكن mix chicken"><div class="card-body"><div class="name"><div><h3>ميكس تشيكن</h3><span class="en">Mix Chicken</span></div></div><div class="variants"><span class="pill">M <b>160</b></span><span class="pill">L <b>200</b></span></div></div><span class="tag">Pizza</span></article>
+<article class="card" data-search="سوبر ليتشي super lychee"><div class="card-body"><div class="name"><div><h3>سوبر ليتشي</h3><span class="en">Super Lychee</span></div></div><div class="variants"><span class="pill">M <b>170</b></span><span class="pill">L <b>200</b></span></div></div><span class="tag">Pizza</span></article>
+</div>
+</section>
+<section class="section" data-section="extra">
+<h2>Sauce &amp; Extra</h2><div class="grid">
+<article class="card" data-search="صوص sauce ranch"><div class="card-body"><div class="name"><div><h3>صوص</h3><span class="en">Sauce</span></div><span class="price">15</span></div></div><span class="tag">Extra</span></article>
+<article class="card" data-search="كول سلو coleslaw"><div class="card-body"><div class="name"><div><h3>كول سلو</h3><span class="en">Coleslaw</span></div><span class="price">15</span></div></div><span class="tag">Extra</span></article>
+<article class="card" data-search="مخلل pickle"><div class="card-body"><div class="name"><div><h3>مخلل</h3><span class="en">Pickle</span></div><span class="price">15</span></div></div><span class="tag">Extra</span></article>
+<article class="card" data-search="صودا مصرية egyptian soda"><div class="card-body"><div class="name"><div><h3>إيجيبتين صودا</h3><span class="en">Egyptian Soda</span></div><span class="price">20</span></div></div><span class="tag">Extra</span></article>
+<article class="card" data-search="كومبو combo"><div class="card-body"><div class="name"><div><h3>كومبو</h3><span class="en">Combo</span></div><span class="price">35</span></div></div><span class="tag">Extra</span></article>
+</div>
+</section>
+</div>
+<div class="empty" id="empty">لا توجد أصناف مطابقة للبحث.</div>
+</main>
+<footer><div class="footer-brand">LYCHEE FOOD AND MORE</div><div class="phone">010 8067 8293  |  012 0539 0821</div><div class="address">ElMahalla ElKubra - Mansheyet Al-Bakry - Al-Yasmine Club - behind Elhadary Patisserie</div><a class="cta" href="https://wa.me/201080678293" rel="noopener" target="_blank">💬 اطلب الآن عبر واتساب</a></footer>
+<script>
+const buttons=[...document.querySelectorAll('.tabs button')];
+const sections=[...document.querySelectorAll('.section')];
+const cards=[...document.querySelectorAll('.card')];
+const search=document.getElementById('search'), empty=document.getElementById('empty');
+let cat='all';
+
+// قائمة صور الواتساب الخاصة بوجبات المنيو
+const userImages = [
+  "images/WhatsApp Image 2026-09-07 at 1.42.01 AM (1).jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.42.01 AM (2).jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.42.01 AM (3).jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.42.01 AM (4).jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.42.01 AM.jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.42.02 AM (1).jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.42.02 AM (2).jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.42.02 AM.jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.42.03 AM.jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.42.36 AM (1).jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.42.36 AM.jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.43.05 AM.jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.43.08 AM (1).jpeg",
+  "images/WhatsApp Image 2026-09-07 at 1.43.08 AM.jpeg"
+];
+
+let globalImgIndex = 0;
+
+sections.forEach(s => {
+  s.querySelectorAll('.card').forEach(c => {
+    if(!c.querySelector('.card-img')) {
+      const img = document.createElement('img');
+      img.className = 'card-img';
+      img.alt = c.querySelector('h3')?.textContent || 'Lychee Food';
+      img.src = userImages[globalImgIndex % userImages.length];
+      globalImgIndex++;
+      c.prepend(img);
+      const body = document.createElement('div');
+      body.className = 'card-body';
+      while(c.children.length > 1) body.appendChild(c.children[1]);
+      c.appendChild(body);
+    }
+  });
+});
+
+function render(){
+  const q=search.value.trim().toLowerCase();
+  let shown=0;
+  sections.forEach(s=>{
+    const matchCat=cat==='all'||s.dataset.section===cat;
+    let sectionShown=0;
+    s.querySelectorAll('.card').forEach(c=>{
+      const ok=matchCat && (!q || c.dataset.search.toLowerCase().includes(q));
+      c.style.display=ok?'block':'none';
+      if(ok){shown++;sectionShown++}
+    });
+    s.style.display=sectionShown?'block':'none';
+  });
+  empty.style.display=shown?'none':'block';
+}
+buttons.forEach(b=>b.onclick=()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');cat=b.dataset.cat;render()});
+search.oninput=render;
+</script>
+</body>
+</html>
