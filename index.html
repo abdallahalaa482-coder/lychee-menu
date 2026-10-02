@@ -245,5 +245,6 @@ function closeCart(){document.querySelector('.cart-overlay').classList.remove('o
 document.querySelectorAll('.open-cart').forEach(button=>button.onclick=openCart);document.querySelectorAll('.close-cart').forEach(button=>button.onclick=closeCart);document.querySelector('#clear-cart').onclick=()=>{saveCart([]);updateCartCount();renderCart()};document.querySelector('.sheet-overlay').onclick=closeSheet;window.addEventListener('hashchange',()=>{if(location.hash==='#cart')openCart();else closeCart()});if(location.hash==='#cart')openCart();updateCartCount();
 
 </script>
+<script src="menu-admin-sync.js"></script>
 </body>
 </html>
