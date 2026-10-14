@@ -38,28 +38,86 @@ body {
   position: relative;
   display: grid;
   place-items: center;
-  width: 43px;
-  height: 43px;
-  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
   background: #fff;
   border: 1px solid #eadfd7;
   font-size: 19px;
   text-decoration: none;
   cursor: pointer;
   font-family: inherit;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+.icon-button:hover {
+  border-color: var(--orange);
+  background: #fffcf9;
+  transform: translateY(-1px);
 }
 .cart-count {
   position: absolute;
-  left: -4px;
+  left: -5px;
   top: -5px;
-  min-width: 19px;
-  height: 19px;
-  padding: 2px;
-  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
   background: var(--orange);
   color: #fff;
-  font: 800 10px Arial;
-  text-align: center;
+  font: 800 11px Arial, sans-serif;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.search {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 60 !important;
+  padding: 12px 0 8px !important;
+  background: linear-gradient(#fafafa 80%, rgba(250, 250, 250, 0)) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-direction: row-reverse !important;
+}
+
+.search-box {
+  flex: 1 !important;
+  position: relative !important;
+}
+
+.search input {
+  width: 100% !important;
+  border: 1px solid #eadfd7 !important;
+  background: #fff !important;
+  border-radius: 18px !important;
+  padding: 12px 46px 12px 18px !important;
+  font-size: 14.5px !important;
+  font-family: inherit !important;
+  outline: none !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important;
+  height: 48px !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+.search input:focus {
+  border-color: var(--orange) !important;
+  box-shadow: 0 4px 18px rgba(247, 101, 2, 0.15) !important;
+}
+
+.search-icon {
+  position: absolute !important;
+  right: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: none !important;
+  color: var(--orange) !important;
 }
 
 .delivery-bar {
