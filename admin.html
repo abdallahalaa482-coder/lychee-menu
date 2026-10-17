@@ -1,2 +1,470 @@
 <!doctype html>
-<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>إدارة المنيو | SMASH Menu</title><link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>:root{--red:#e94824;--ink:#1e1815;--line:#eadfd8;--soft:#fff7f2}*{box-sizing:border-box}body{margin:0;background:#faf8f7;color:var(--ink);font-family:Alexandria,Arial;font-size:13px}.admin-header{height:66px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(18px,calc((100% - 1180px)/2))}.admin-header h1{font-size:18px;margin:0}.admin-header small{display:block;color:#8a7e77;font-size:10px;margin-top:3px}.header-actions{display:flex;gap:8px}.button{border:0;border-radius:9px;padding:10px 14px;font:700 12px Alexandria;cursor:pointer;text-decoration:none;display:inline-block}.button.primary{background:var(--red);color:#fff}.button.muted{background:#fff1eb;color:var(--red)}.shell{max-width:1180px;margin:22px auto;padding:0 16px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:15px}.stat strong{font-size:22px;display:block}.stat span{font-size:11px;color:#776d68}.layout{display:grid;grid-template-columns:minmax(300px,430px) 1fr;gap:18px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px}.panel h2{font-size:15px;margin:0 0 16px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;font-weight:700}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;font:12px Alexandria;background:#fff;outline-color:var(--red)}.field textarea{min-height:72px;resize:vertical}.image-preview{width:100%;height:128px;object-fit:cover;border-radius:8px;background:var(--soft);display:none}.repeat-head{display:flex;justify-content:space-between;align-items:center;margin:17px 0 8px;font-weight:700;font-size:12px}.repeat-row{display:grid;grid-template-columns:1fr 90px 32px;gap:7px;margin-bottom:7px}.tiny-button{border:0;border-radius:7px;background:#fff1eb;color:var(--red);font:700 16px Arial;cursor:pointer}.form-actions{display:flex;gap:8px;margin-top:16px}.product-list{display:grid;gap:10px}.admin-product{display:grid;grid-template-columns:72px 1fr auto;gap:12px;padding:10px;border:1px solid var(--line);border-radius:10px;align-items:center}.admin-product img{width:72px;height:62px;border-radius:8px;object-fit:cover;background:var(--soft)}.admin-product h3{font-size:13px;margin:0 0 5px}.admin-product p{margin:0;color:#776d68;font-size:10px;line-height:1.7}.admin-product strong{color:var(--red);font-size:12px}.row-actions{display:flex;gap:5px}.row-actions button{border:0;border-radius:7px;padding:7px 8px;font:700 10px Alexandria;cursor:pointer}.edit{background:#fff1eb;color:var(--red)}.delete{background:#fff0f0;color:#c43622}.settings{margin-top:18px;display:flex;align-items:end;gap:10px}.settings .field{flex:1}.notice{font-size:10px;color:#806f65;line-height:1.8;margin-top:14px}@media(max-width:780px){.admin-header{padding:0 14px}.shell{margin:14px auto}.stats{gap:8px}.stat{padding:11px}.stat strong{font-size:18px}.layout{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.admin-product{grid-template-columns:56px 1fr}.admin-product img{width:56px;height:52px}.row-actions{grid-column:2;justify-content:start}.settings{display:block}.settings .button{width:100%;margin-top:10px}}</style></head><body><header class="admin-header"><div><h1>لوحة إدارة المنيو</h1><small>SMASH Menu · Lychee Food and More</small></div><div class="header-actions"><a class="button muted" href="index.html">عرض المنيو</a><button id="logout" class="button muted">خروج</button></div></header><main class="shell"><section class="stats"><article class="stat"><strong id="products-count">0</strong><span>إجمالي الأصناف</span></article><article class="stat"><strong id="categories-count">0</strong><span>التصنيفات</span></article><article class="stat"><strong id="cart-count">0</strong><span>منتجات بالسلة الآن</span></article></section><section class="layout"><form id="product-form" class="panel"><h2 id="form-title">إضافة صنف جديد</h2><input id="product-id" type="hidden"><div class="form-grid"><div class="field"><label>اسم الصنف</label><input id="name" required></div><div class="field"><label>السعر الأساسي</label><input id="price" type="number" min="0" required></div><div class="field"><label>الفئة</label><select id="category"><option>برجر</option><option>وجبات</option><option>جانبية</option><option>بيتزا</option><option>كريب</option></select></div><div class="field"><label>صورة المنتج</label><input id="image" type="file" accept="image/*"></div><div class="field full"><label>وصف مختصر</label><textarea id="description"></textarea></div><div class="field full"><img id="image-preview" class="image-preview" alt="معاينة الصورة"></div></div><div class="repeat-head">الأحجام <button type="button" class="button muted" id="add-size">+ حجم</button></div><div id="sizes"></div><div class="repeat-head">الإضافات الاختيارية <button type="button" class="button muted" id="add-addon">+ إضافة</button></div><div id="addons"></div><div class="form-actions"><button class="button primary">حفظ الصنف</button><button id="cancel-edit" type="button" class="button muted" hidden>إلغاء</button></div></form><section class="panel"><h2>الأصناف الحالية</h2><div id="product-list" class="product-list"></div><section class="settings"><div class="field"><label>رابط إتمام الطلب أو الدفع</label><input id="checkout-url" type="url" placeholder="https://..."></div><button id="save-settings" type="button" class="button primary">حفظ الرابط</button></section><p class="notice">التغييرات محفوظة محليًا في هذا المتصفح فقط. لن تظهر تلقائيًا للزوار على الموقع المنشور إلا بعد ربط المنيو بقاعدة بيانات.</p></section></section></main><script src="admin-auth.js"></script><script src="admin.js"></script></body></html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>لوحة إدارة المنيو | LYCHEE Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #f76502;
+      --ink: #1e1815;
+      --line: #eadfd8;
+      --soft: #fff7f2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #faf8f7;
+      color: var(--ink);
+      font-family: Alexandria, Arial;
+      font-size: 13px;
+    }
+    .admin-header {
+      height: 66px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(18px, calc((100% - 1180px)/2));
+    }
+    .admin-header h1 {
+      font-size: 18px;
+      margin: 0;
+      color: #1e1815;
+    }
+    .admin-header small {
+      display: block;
+      color: #8a7e77;
+      font-size: 10px;
+      margin-top: 3px;
+    }
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .button {
+      border: 0;
+      border-radius: 9px;
+      padding: 10px 14px;
+      font: 700 12px Alexandria;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .button.primary {
+      background: var(--red);
+      color: #fff;
+    }
+    .button.muted {
+      background: #fff1eb;
+      color: var(--red);
+    }
+    .shell {
+      max-width: 1180px;
+      margin: 22px auto;
+      padding: 0 16px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .stat {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 15px;
+    }
+    .stat strong {
+      font-size: 22px;
+      display: block;
+      color: var(--red);
+    }
+    .stat span {
+      font-size: 11px;
+      color: #776d68;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 440px) 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .panel h2 {
+      font-size: 15px;
+      margin: 0 0 16px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+    }
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+    .field.full {
+      grid-column: 1 / -1;
+    }
+    .field label {
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      font: 12px Alexandria;
+      background: #fff;
+      outline-color: var(--red);
+    }
+    .field textarea {
+      min-height: 72px;
+      resize: vertical;
+    }
+    .image-preview {
+      width: 100%;
+      height: 128px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: var(--soft);
+      display: none;
+    }
+
+    /* حقل العروض الخاص */
+    .offer-field {
+      background: #fff7f2;
+      border: 1.5px dashed var(--red);
+      border-radius: 10px;
+      padding: 12px;
+      margin: 4px 0;
+    }
+    .offer-toggle-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .offer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .offer-title {
+      font-weight: 800;
+      color: var(--red);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .offer-hint {
+      font-size: 10px;
+      color: #776d68;
+      line-height: 1.4;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 52px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: #d8ceca;
+      transition: .3s;
+      border-radius: 28px;
+    }
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+    .toggle-switch input:checked + .toggle-slider {
+      background-color: var(--red);
+    }
+    .toggle-switch input:checked + .toggle-slider:before {
+      transform: translateX(24px);
+    }
+
+    .repeat-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 17px 0 8px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .repeat-row {
+      display: grid;
+      grid-template-columns: 1fr 90px 32px;
+      gap: 7px;
+      margin-bottom: 7px;
+    }
+    .tiny-button {
+      border: 0;
+      border-radius: 7px;
+      background: #fff1eb;
+      color: var(--red);
+      font: 700 16px Arial;
+      cursor: pointer;
+    }
+    .form-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .product-list {
+      display: grid;
+      gap: 10px;
+    }
+    .admin-product {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: 12px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      align-items: center;
+      transition: border-color 0.2s;
+    }
+    .admin-product.is-offer-item {
+      border-color: #f76502;
+      background: #fffbf8;
+    }
+    .admin-product img {
+      width: 72px;
+      height: 62px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: var(--soft);
+    }
+    .admin-product h3 {
+      font-size: 13px;
+      margin: 0 0 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .admin-product p {
+      margin: 0;
+      color: #776d68;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+    .admin-product strong {
+      color: var(--red);
+      font-size: 12px;
+    }
+    .offer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      background: linear-gradient(135deg, #f76502, #ff8a18);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+    .row-actions {
+      display: flex;
+      gap: 5px;
+    }
+    .row-actions button {
+      border: 0;
+      border-radius: 7px;
+      padding: 7px 8px;
+      font: 700 10px Alexandria;
+      cursor: pointer;
+    }
+    .edit {
+      background: #fff1eb;
+      color: var(--red);
+    }
+    .delete {
+      background: #fff0f0;
+      color: #c43622;
+    }
+    .settings {
+      margin-top: 18px;
+      display: flex;
+      align-items: end;
+      gap: 10px;
+    }
+    .settings .field {
+      flex: 1;
+    }
+    .notice {
+      font-size: 10px;
+      color: #806f65;
+      line-height: 1.8;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 780px) {
+      .admin-header { padding: 0 14px; }
+      .shell { margin: 14px auto; }
+      .stats { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .stat { padding: 11px; }
+      .stat strong { font-size: 18px; }
+      .layout { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .admin-product { grid-template-columns: 56px 1fr; }
+      .admin-product img { width: 56px; height: 52px; }
+      .row-actions { grid-column: 2; justify-content: start; }
+      .settings { display: block; }
+      .settings .button { width: 100%; margin-top: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="admin-header">
+    <div>
+      <h1>لوحة إدارة المنيو</h1>
+      <small>LYCHEE Food and More · إدارة الأصناف والعروض</small>
+    </div>
+    <div class="header-actions">
+      <a class="button muted" href="index.html">عرض المنيو</a>
+      <button id="logout" class="button muted">خروج</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="stats">
+      <article class="stat">
+        <strong id="products-count">0</strong>
+        <span>إجمالي الأصناف</span>
+      </article>
+      <article class="stat">
+        <strong id="offers-count">0</strong>
+        <span>العروض الخاصة 🔥</span>
+      </article>
+      <article class="stat">
+        <strong id="categories-count">0</strong>
+        <span>التصنيفات</span>
+      </article>
+      <article class="stat">
+        <strong id="cart-count">0</strong>
+        <span>منتجات بالسلة الآن</span>
+      </article>
+    </section>
+
+    <section class="layout">
+      <form id="product-form" class="panel">
+        <h2 id="form-title">إضافة صنف جديد</h2>
+        <input id="product-id" type="hidden">
+        
+        <div class="form-grid">
+          <!-- زرار العروض (يفتح ويقفل) -->
+          <div class="field full offer-field">
+            <div class="offer-toggle-box">
+              <div class="offer-info">
+                <span class="offer-title">🔥 زرار العروض (عرض خاص)</span>
+                <span class="offer-hint">عند فتح الزرار: يتم عرض الصنف في شريط العروض المربعات فقط ولا يظهر في المنيو نفسه. عند القفل: يظهر في المنيو كصنف عادي.</span>
+              </div>
+              <label class="toggle-switch">
+                <input id="is-offer" type="checkbox">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>اسم الصنف / العرض</label>
+            <input id="name" required placeholder="مثال: عرض ليتشي ميكس">
+          </div>
+
+          <div class="field">
+            <label>السعر (جنيه)</label>
+            <input id="price" type="number" min="0" required placeholder="السعر">
+          </div>
+
+          <div class="field">
+            <label>الفئة / القسم</label>
+            <select id="category">
+              <option value="Mix Crepe">Mix Crepe (ميكس كريب)</option>
+              <option value="Regular Crepe">Regular Crepe (كريب عادي)</option>
+              <option value="Smash Burger">Smash Burger (سماش برجر)</option>
+              <option value="Fries Box">Fries Box (فرايز بوكس)</option>
+              <option value="Fries">Fries (بطاطس / فرايز)</option>
+              <option value="Sandwich">Sandwich (ساندوتشات)</option>
+              <option value="Chicken Sandwich">Chicken Sandwich (تشيكن ساندوتش)</option>
+              <option value="Pizza Roll">Pizza Roll (بيتزا رول)</option>
+              <option value="Pizza">Pizza (بيتزا)</option>
+              <option value="Sauce & Extra">Sauce & Extra (إضافات وصوصات)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>صورة المنتج</label>
+            <input id="image" type="file" accept="image/*">
+          </div>
+
+          <div class="field full">
+            <label>وصف مختصر</label>
+            <textarea id="description" placeholder="مكونات الصنف أو تفاصيل العرض..."></textarea>
+          </div>
+
+          <div class="field full">
+            <img id="image-preview" class="image-preview" alt="معاينة الصورة">
+          </div>
+        </div>
+
+        <div class="repeat-head">
+          الأحجام 
+          <button type="button" class="button muted" id="add-size">+ حجم</button>
+        </div>
+        <div id="sizes"></div>
+
+        <div class="repeat-head">
+          الإضافات الاختيارية 
+          <button type="button" class="button muted" id="add-addon">+ إضافة</button>
+        </div>
+        <div id="addons"></div>
+
+        <div class="form-actions">
+          <button class="button primary">حفظ الصنف</button>
+          <button id="cancel-edit" type="button" class="button muted" hidden>إلغاء</button>
+        </div>
+      </form>
+
+      <section class="panel">
+        <h2>الأصناف والعروض الحالية</h2>
+        <div id="product-list" class="product-list"></div>
+        <p class="notice">التغييرات تُحفظ مباشرة في المتصفح وتظهر في صفحة المنيو فور الحفظ.</p>
+      </section>
+    </section>
+  </main>
+
+  <script src="admin-auth.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

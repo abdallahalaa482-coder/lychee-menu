@@ -2,9 +2,37 @@
   const PRODUCTS_KEY = 'smash-burger-products';
   const CART_KEY = 'smash-burger-cart';
   const products = JSON.parse(localStorage.getItem(PRODUCTS_KEY) || '[]');
-  if (!products.length) return;
 
-  const categoryMap = { برجر: 'smash', وجبات: 'regular', جانبية: 'fries', بيتزا: 'pizza', كريب: 'mix' };
+  const categoryMap = {
+    'Mix Crepe': 'mix',
+    'Regular Crepe': 'regular',
+    'Smash Burger': 'smash',
+    'Fries Box': 'box',
+    'Fries': 'fries',
+    'Sandwich': 'sandwich',
+    'Chicken Sandwich': 'chicken-sandwich',
+    'Pizza Roll': 'pizza-roll',
+    'Pizza': 'pizza',
+    'Sauce & Extra': 'extra',
+    // Backward compatibility
+    'كريب': 'mix',
+    'ميكس كريب': 'mix',
+    'كريب عادي': 'regular',
+    'برجر': 'smash',
+    'سماش برجر': 'smash',
+    'وجبات': 'regular',
+    'جانبية': 'fries',
+    'بطاطس': 'fries',
+    'فرايز': 'fries',
+    'ساندوتش': 'sandwich',
+    'ساندوتشات': 'sandwich',
+    'تشيكن ساندوتش': 'chicken-sandwich',
+    'بيتزا رول': 'pizza-roll',
+    'بيتزا': 'pizza',
+    'إضافات': 'extra',
+    'إضافات وصوصات': 'extra'
+  };
+
   const money = value => `${value} جنيه`;
   const readCart = () => JSON.parse(localStorage.getItem(CART_KEY) || '[]');
   const saveCart = cart => localStorage.setItem(CART_KEY, JSON.stringify(cart));
@@ -43,7 +71,7 @@
         ${item.image ? `<div class="sheet-product-banner"><img src="${escape(item.image)}" alt="${escape(item.name)}"></div>` : ''}
         <div class="sheet-product-info">
           <h2>${escape(item.name)}</h2>
-          <p>${escape(item.description || 'وجبة محضرة طازجة بأعلى جودة.')}</p>
+          <p>${escape(item.description || (item.isOffer ? 'عرض خاص ومميز من ليتشي.' : 'وجبة محضرة طازجة بأعلى جودة.'))}</p>
         </div>
       `;
 
@@ -161,7 +189,136 @@
     document.querySelector('.product-sheet')?.classList.add('open');
   }
 
-  products.forEach(item => {
+  // Handle Offers Section (Auto-scroll every 5s)
+  const offersSection = document.querySelector('#offers-section');
+  const offersTrack = document.querySelector('#offers-track');
+  const offersCarousel = document.querySelector('#offers-carousel');
+  const offersDots = document.querySelector('#offers-dots');
+  const offerPrev = document.querySelector('#offer-prev');
+  const offerNext = document.querySelector('#offer-next');
+
+  const offerItems = products.filter(p => p.isOffer);
+  const regularItems = products.filter(p => !p.isOffer);
+
+  // If there are no offers, keep section hidden / empty
+  if (offersSection && offersTrack) {
+    if (!offerItems.length) {
+      offersSection.style.display = 'none';
+      offersTrack.innerHTML = '';
+      if (offersDots) offersDots.innerHTML = '';
+    } else {
+      offersSection.style.display = 'block';
+      offersTrack.innerHTML = '';
+
+      offerItems.forEach(item => {
+        // If an offer has the same name as a static card in index.html, remove it from the menu sections
+        document.querySelectorAll('.card:not(.managed-card) h3').forEach(title => {
+          if (title.textContent.trim() === item.name) {
+            title.closest('.card')?.remove();
+          }
+        });
+
+        const card = document.createElement('article');
+        card.className = 'offer-card managed-offer-card';
+        card.dataset.search = `${item.name} ${item.description || ''} ${item.category || ''}`;
+        card.innerHTML = `
+          <span class="offer-card-tag">🔥 عرض خاص</span>
+          <div class="offer-card-img-wrap">
+            <img class="offer-card-img" src="${escape(item.image || 'assets/lychee-logo-cutout.png')}" alt="${escape(item.name)}">
+          </div>
+          <div class="offer-card-body">
+            <h3 class="offer-card-name">${escape(item.name)}</h3>
+            <p class="offer-card-desc">${escape(item.description || 'عرض مميز وحصري من ليتشي!')}</p>
+            <div class="offer-card-footer">
+              <span class="offer-card-price">${escape(item.price)} <small>جنيه</small></span>
+              <button class="offer-card-btn" type="button">اطلب العرض</button>
+            </div>
+          </div>
+        `;
+
+        const openHandler = e => {
+          e?.stopPropagation();
+          openProduct(item);
+        };
+        card.onclick = openHandler;
+        card.querySelector('.offer-card-btn').onclick = openHandler;
+        offersTrack.appendChild(card);
+      });
+
+      // Setup 5-Second Auto-Scroller for Offers
+      initOffersAutoScroll();
+    }
+  }
+
+  function initOffersAutoScroll() {
+    if (!offersCarousel || !offersTrack) return;
+    const cards = offersTrack.querySelectorAll('.offer-card');
+    if (!cards.length) return;
+
+    if (offersDots) {
+      offersDots.innerHTML = '';
+      cards.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.className = `offers-dot ${idx === 0 ? 'active' : ''}`;
+        dot.onclick = () => scrollToCard(idx);
+        offersDots.appendChild(dot);
+      });
+    }
+
+    let currentIndex = 0;
+    let timer = null;
+
+    function updateDots(idx) {
+      if (!offersDots) return;
+      const dots = offersDots.querySelectorAll('.offers-dot');
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
+    }
+
+    function scrollToCard(idx) {
+      currentIndex = (idx + cards.length) % cards.length;
+      const targetCard = cards[currentIndex];
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        updateDots(currentIndex);
+      }
+    }
+
+    if (offerNext) {
+      offerNext.onclick = () => {
+        scrollToCard(currentIndex + 1);
+        startTimer();
+      };
+    }
+    if (offerPrev) {
+      offerPrev.onclick = () => {
+        scrollToCard(currentIndex - 1);
+        startTimer();
+      };
+    }
+
+    function startTimer() {
+      stopTimer();
+      if (cards.length > 1) {
+        timer = setInterval(() => {
+          scrollToCard(currentIndex + 1);
+        }, 5000);
+      }
+    }
+
+    function stopTimer() {
+      if (timer) clearInterval(timer);
+    }
+
+    offersCarousel.addEventListener('mouseenter', stopTimer);
+    offersCarousel.addEventListener('mouseleave', startTimer);
+    offersCarousel.addEventListener('touchstart', stopTimer, { passive: true });
+    offersCarousel.addEventListener('touchend', startTimer, { passive: true });
+
+    startTimer();
+  }
+
+  // Handle Regular Products (Menu Categories)
+  regularItems.forEach(item => {
     document.querySelectorAll('.card:not(.managed-card) h3').forEach(title => {
       if (title.textContent.trim() === item.name) {
         title.closest('.card')?.remove();
@@ -177,7 +334,7 @@
     card.className = 'card managed-card';
     card.dataset.search = `${item.name} ${item.description || ''}`;
     card.innerHTML = `
-      <img class="card-img" src="${escape(item.image)}" alt="${escape(item.name)}">
+      <img class="card-img" src="${escape(item.image || 'assets/lychee-logo-cutout.png')}" alt="${escape(item.name)}">
       <div class="card-body">
         <div class="name">
           <div>
@@ -191,7 +348,7 @@
       </div>
     `;
 
-    const openHandler = (e) => {
+    const openHandler = e => {
       e?.stopPropagation();
       openProduct(item);
     };
@@ -201,9 +358,14 @@
     grid.prepend(card);
   });
 
+  // Search Filter Handler
   document.querySelector('#search')?.addEventListener('input', event => {
+    const val = event.target.value.trim().toLowerCase();
     document.querySelectorAll('.managed-card').forEach(card => {
-      card.style.display = card.dataset.search.toLowerCase().includes(event.target.value.trim().toLowerCase()) ? 'block' : 'none';
+      card.style.display = card.dataset.search.toLowerCase().includes(val) ? 'block' : 'none';
+    });
+    document.querySelectorAll('.managed-offer-card').forEach(card => {
+      card.style.display = card.dataset.search.toLowerCase().includes(val) ? 'flex' : 'none';
     });
   });
 
