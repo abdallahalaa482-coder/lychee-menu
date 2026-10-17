@@ -299,10 +299,11 @@ function renderCart() {
       `).join('')}
     </div>
     <section class="cart-summary">
+      <h2 class="cart-summary-title">ملخص الطلب</h2>
       <div class="summary-line"><span>المجموع الفرعي</span><span>${money(subtotal)}</span></div>
       <div class="summary-line"><span>رسوم التوصيل</span><span>تتغير حسب المنطقة</span></div>
       <div class="summary-total"><span>الإجمالي</span><strong>${money(subtotal)}</strong></div>
-      <button class="checkout" type="button" id="checkout">أرسل الطلب عبر واتساب (${money(subtotal)})</button>
+      <button class="checkout" type="button" id="checkout"><span>إتمام الطلب عبر واتساب</span><strong>${money(subtotal)} ←</strong></button>
     </section>
   `;
 
