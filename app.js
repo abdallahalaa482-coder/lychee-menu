@@ -65,19 +65,6 @@ if (!document.querySelector('.product-sheet')) {
   `);
 }
 
-// شاشة افتتاح خفيفة تظهر مرة واحدة فقط أثناء جلسة التصفح.
-if (!sessionStorage.getItem('lychee-intro-seen')) {
-  document.body.insertAdjacentHTML('beforeend', `
-    <div class="intro-splash" role="status" aria-label="مرحبًا بك في ليتشي">
-      <img src="assets/lychee-logo-cutout.png" alt="LYCHEE FOOD AND MORE">
-      <span>طعم مختلف في كل لقمة</span>
-    </div>
-  `);
-  sessionStorage.setItem('lychee-intro-seen', '1');
-  setTimeout(() => document.querySelector('.intro-splash')?.classList.add('hide'), 1150);
-  setTimeout(() => document.querySelector('.intro-splash')?.remove(), 1600);
-}
-
 let product, size, quantity, addons;
 
 function renderSheet() {
