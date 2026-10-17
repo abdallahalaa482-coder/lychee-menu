@@ -255,14 +255,21 @@
     const cards = offersTrack.querySelectorAll('.offer-card');
     if (!cards.length) return;
 
+    // Setup dots
     if (offersDots) {
       offersDots.innerHTML = '';
-      cards.forEach((_, idx) => {
-        const dot = document.createElement('span');
-        dot.className = `offers-dot ${idx === 0 ? 'active' : ''}`;
-        dot.onclick = () => scrollToCard(idx);
-        offersDots.appendChild(dot);
-      });
+      if (cards.length <= 1) {
+        offersDots.style.display = 'none';
+      } else {
+        offersDots.style.display = 'flex';
+        cards.forEach((_, idx) => {
+          const dot = document.createElement('button');
+          dot.className = `offers-dot ${idx === 0 ? 'active' : ''}`;
+          dot.setAttribute('aria-label', `العرض ${idx + 1}`);
+          dot.onclick = () => { goToSlide(idx); resetTimer(); };
+          offersDots.appendChild(dot);
+        });
+      }
     }
 
     let currentIndex = 0;
@@ -270,52 +277,55 @@
 
     function updateDots(idx) {
       if (!offersDots) return;
-      const dots = offersDots.querySelectorAll('.offers-dot');
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
+      offersDots.querySelectorAll('.offers-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === idx);
+      });
     }
 
-    function scrollToCard(idx) {
-      currentIndex = (idx + cards.length) % cards.length;
-      const targetCard = cards[currentIndex];
-      if (targetCard) {
-        targetCard.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-        updateDots(currentIndex);
-      }
+    function goToSlide(idx) {
+      currentIndex = ((idx % cards.length) + cards.length) % cards.length;
+      offersTrack.style.transform = `translateX(${currentIndex * -100}%)`;
+      updateDots(currentIndex);
     }
 
     if (offerNext) {
-      offerNext.onclick = () => {
-        scrollToCard(currentIndex + 1);
-        startTimer();
-      };
+      offerNext.onclick = () => { goToSlide(currentIndex + 1); resetTimer(); };
     }
     if (offerPrev) {
-      offerPrev.onclick = () => {
-        scrollToCard(currentIndex - 1);
-        startTimer();
-      };
+      offerPrev.onclick = () => { goToSlide(currentIndex - 1); resetTimer(); };
     }
 
-    function startTimer() {
+    // Swipe support
+    let touchStartX = 0;
+    offersCarousel.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+      stopTimer();
+    }, { passive: true });
+    offersCarousel.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) {
+        goToSlide(diff > 0 ? currentIndex + 1 : currentIndex - 1);
+      }
+      resetTimer();
+    }, { passive: true });
+
+    offersCarousel.addEventListener('mouseenter', stopTimer);
+    offersCarousel.addEventListener('mouseleave', resetTimer);
+
+    function stopTimer() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+    function resetTimer() {
       stopTimer();
       if (cards.length > 1) {
-        timer = setInterval(() => {
-          scrollToCard(currentIndex + 1);
-        }, 5000);
+        timer = setInterval(() => goToSlide(currentIndex + 1), 5000);
       }
     }
 
-    function stopTimer() {
-      if (timer) clearInterval(timer);
-    }
-
-    offersCarousel.addEventListener('mouseenter', stopTimer);
-    offersCarousel.addEventListener('mouseleave', startTimer);
-    offersCarousel.addEventListener('touchstart', stopTimer, { passive: true });
-    offersCarousel.addEventListener('touchend', startTimer, { passive: true });
-
-    startTimer();
+    goToSlide(0);
+    resetTimer();
   }
+
 
   // Handle Regular Products (Menu Categories)
   regularItems.forEach(item => {
