@@ -56,7 +56,10 @@ if (!document.querySelector('.product-sheet')) {
       <main class="cart-page">
         <header class="cart-header">
           <button class="back-button close-cart" type="button" aria-label="العودة للمنيو">›</button>
-          <h1>سلة الطلبات</h1>
+          <div class="cart-title">
+            <span class="cart-title-icon">🛍️</span>
+            <div><h1>سلة الطلبات</h1><p>راجع طلبك قبل الإرسال</p></div>
+          </div>
           <button id="clear-cart" class="clear-cart" type="button">مسح الكل</button>
         </header>
         <section id="cart-content" class="cart-content"></section>
@@ -299,10 +302,11 @@ function renderCart() {
       `).join('')}
     </div>
     <section class="cart-summary">
+      <span class="summary-kicker">ملخص الطلب</span>
       <div class="summary-line"><span>المجموع الفرعي</span><span>${money(subtotal)}</span></div>
       <div class="summary-line"><span>رسوم التوصيل</span><span>تتغير حسب المنطقة</span></div>
       <div class="summary-total"><span>الإجمالي</span><strong>${money(subtotal)}</strong></div>
-      <button class="checkout" type="button" id="checkout">أرسل الطلب عبر واتساب (${money(subtotal)})</button>
+      <button class="checkout" type="button" id="checkout"><span>أرسل الطلب عبر واتساب</span><strong>${money(subtotal)} ←</strong></button>
     </section>
   `;
 
