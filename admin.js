@@ -543,6 +543,31 @@ $('#run-search').onclick = () => {
   render();
 };
 
+$('#download-menu-qr')?.addEventListener('click', async () => {
+  const button = $('#download-menu-qr');
+  const originalLabel = button.textContent;
+  button.disabled = true;
+  button.textContent = 'جارٍ التحميل...';
+
+  try {
+    const response = await fetch('assets/lychee-menu-qr.png', { cache: 'no-store' });
+    if (!response.ok) throw new Error('QR download failed');
+    const url = URL.createObjectURL(await response.blob());
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'lychee-menu-qr.png';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    window.open('assets/lychee-menu-qr.png', '_blank', 'noopener');
+  } finally {
+    button.disabled = false;
+    button.textContent = originalLabel;
+  }
+});
+
 (async () => {
   await importMenuProducts();
   render();
