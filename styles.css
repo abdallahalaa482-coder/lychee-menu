@@ -937,6 +937,10 @@ body {
 /* شارة "عروض حصرية" في الأعلى */
 .offer-card-tag {
   display: inline-flex;
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  left: 12px;
   align-items: center;
   gap: 4px;
   background: rgba(0, 0, 0, 0.25);
@@ -947,7 +951,7 @@ body {
   border-radius: 20px;
   letter-spacing: 0.4px;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  margin-bottom: 2px;
+  margin: 0;
 }
 
 /* اسم العرض */
@@ -1165,11 +1169,6 @@ body {
     font-size: 9px;
     padding: 2px 7px;
   }
-  .offer-nav-btn {
-    width: 26px;
-    height: 26px;
-    font-size: 15px;
-  }
   .offer-card {
     height: 165px;
   }
@@ -1182,9 +1181,10 @@ body {
     gap: 2px;
   }
   .offer-card-tag {
+    top: 8px;
+    left: 8px;
     font-size: 9px;
     padding: 2px 7px;
-    margin-bottom: 2px;
   }
   .offer-card-name {
     font-size: 14px;

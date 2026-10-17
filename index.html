@@ -30,7 +30,7 @@ footer{position:relative;overflow:hidden;background:#090909;color:#fff;margin-to
 @media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.grid{grid-template-columns:repeat(2,1fr);gap:10px}.card-img{height:130px}.card-body{padding:11px}.name h3{font-size:15px}.price{font-size:14px}.section h2{font-size:20px}}
 @media(max-width:420px){.grid{grid-template-columns:1fr 1fr}.card-img{height:120px}.wrap{padding:0 10px 25px}.tabs button{padding:10px 12px}.brand-logo{width:78vw}}
 </style>
-<link href="styles.css?v=7" rel="stylesheet"/>
+<link href="styles.css?v=8" rel="stylesheet"/>
 </head>
 <body>
 <header class="hero">
@@ -71,10 +71,6 @@ footer{position:relative;overflow:hidden;background:#090909;color:#fff;margin-to
       <span class="offers-flame">🔥</span>
       <h2>عروض ليتشي المميزة</h2>
       <span class="offers-badge">وفر واستمتع</span>
-    </div>
-    <div class="offers-controls">
-      <button type="button" class="offer-nav-btn prev" id="offer-prev" aria-label="العرض السابق">‹</button>
-      <button type="button" class="offer-nav-btn next" id="offer-next" aria-label="العرض التالي">›</button>
     </div>
   </div>
   <div class="offers-carousel" id="offers-carousel">
@@ -326,7 +322,7 @@ function render(){
 buttons.forEach(b=>b.onclick=()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');cat=b.dataset.cat;render()});
 search.oninput=render;
 </script>
-<script src="app.js?v=7"></script>
-<script src="menu-admin-sync.js?v=7"></script>
+<script src="app.js?v=8"></script>
+<script src="menu-admin-sync.js?v=8"></script>
 </body>
 </html>
