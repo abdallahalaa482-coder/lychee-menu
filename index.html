@@ -26,7 +26,7 @@
 .section{margin:30px 0}.section h2{display:flex;align-items:center;gap:10px;margin:0 0 15px;font-size:23px}.section h2:before{content:"";width:7px;height:28px;border-radius:8px;background:linear-gradient(var(--orange),var(--orange2))}.section h2:after{content:"";height:1px;background:var(--line);flex:1}
 .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{position:relative;background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 7px 25px #0000000b;transition:.22s}.card:hover{transform:translateY(-4px);box-shadow:0 14px 35px #00000018}.card-img{width:100%;height:160px;object-fit:cover;display:block;background:#f2ece7}.card-body{padding:14px 14px 15px}.name{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.name h3{margin:0;font-size:17px}.en{display:block;color:var(--orange);font-size:12px;margin-top:4px;direction:ltr;text-align:right}.price{font-weight:900;color:#fff;white-space:nowrap;font-size:16px;background:var(--orange);border-radius:10px;padding:6px 9px;line-height:1}.desc{color:var(--muted);font-size:12px;line-height:1.7;margin:10px 0 0}.variants{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.pill{background:#fff1e7;border:1px solid #ffe0c8;padding:7px 9px;border-radius:10px;font-size:11px}.pill b{color:var(--orange)}
 .tag{position:absolute;top:10px;right:10px;background:#0b0b0bcc;color:#fff;border:1px solid #ffffff33;padding:6px 8px;border-radius:9px;font-size:10px}.empty{text-align:center;padding:50px;color:#888;display:none}
-footer{position:relative;overflow:hidden;background:#090909;color:#fff;margin-top:30px;padding:34px 18px;text-align:center;border-top:4px solid var(--orange)}footer:before{content:"";position:absolute;inset:auto -10% -100px;height:170px;background:var(--orange);filter:blur(90px);opacity:.12}.footer-brand{font-size:22px;font-weight:900;letter-spacing:2px}.phone{font-size:18px;font-weight:900;color:#ff8a38;margin-top:10px}.address{margin-top:8px;font-size:12px;color:#aaa}.cta{display:inline-block;margin-top:18px;background:var(--orange);color:#fff;text-decoration:none;font-weight:900;padding:12px 24px;border-radius:999px;box-shadow:0 8px 22px #f7650240}
+footer{position:relative;overflow:hidden;background:#090909;color:#fff;margin-top:30px;padding:34px 18px;text-align:center;border-top:4px solid var(--orange)}footer:before{content:"";position:absolute;inset:auto -10% -100px;height:170px;background:var(--orange);filter:blur(90px);opacity:.12}.footer-brand{font-size:22px;font-weight:900;letter-spacing:2px}.phone{font-size:18px;font-weight:900;color:#ffffff;margin-top:10px}.phone a{color:#ffffff;text-decoration:none}.phone a:hover{text-decoration:underline}.address{margin-top:8px;font-size:12px;color:#aaa}.cta{display:inline-block;margin-top:18px;background:var(--orange);color:#fff;text-decoration:none;font-weight:900;padding:12px 24px;border-radius:999px;box-shadow:0 8px 22px #f7650240}.menu-qr-wrap{margin:22px auto 14px;display:flex;justify-content:center}.qr-box{background:#171312;border:2px solid #332b26;border-radius:20px;padding:16px 20px;display:flex;flex-direction:column;align-items:center;max-width:240px;box-shadow:0 8px 24px rgba(0,0,0,0.5)}.qr-code-img{width:160px;height:160px;background:#fff;padding:8px;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:block}.qr-label{font-size:13px;font-weight:700;color:#fff;margin-top:10px}.qr-download-btn{margin-top:10px;font-size:11px;font-weight:700;color:#f76502;background:#fff;border-radius:16px;padding:6px 14px;text-decoration:none;transition:.2s}.qr-download-btn:hover{background:#f76502;color:#fff}
 @media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.grid{grid-template-columns:repeat(2,1fr);gap:10px}.card-img{height:130px}.card-body{padding:11px}.name h3{font-size:15px}.price{font-size:14px}.section h2{font-size:20px}}
 @media(max-width:420px){.grid{grid-template-columns:1fr 1fr}.card-img{height:120px}.wrap{padding:0 10px 25px}.tabs button{padding:10px 12px}.brand-logo{width:78vw}}
 </style>
@@ -204,7 +204,21 @@ footer{position:relative;overflow:hidden;background:#090909;color:#fff;margin-to
 </div>
 <div class="empty" id="empty">لا توجد أصناف مطابقة للبحث.</div>
 </main>
-<footer><div class="footer-brand">LYCHEE FOOD AND MORE</div><div class="phone">010 8067 8293  |  012 0539 0821</div><div class="address">ElMahalla ElKubra - Mansheyet Al-Bakry - Al-Yasmine Club - behind Elhadary Patisserie</div><a class="cta" href="https://wa.me/201080678293" rel="noopener" target="_blank">💬 اطلب الآن عبر واتساب</a></footer>
+<footer>
+  <div class="footer-brand">LYCHEE FOOD AND MORE</div>
+  <div class="phone"><a href="tel:01080678293">010 8067 8293</a> &nbsp;|&nbsp; <a href="tel:01205390821">012 0539 0821</a></div>
+  <div class="address">ElMahalla ElKubra - Mansheyet Al-Bakry - Al-Yasmine Club - behind Elhadary Patisserie</div>
+  
+  <div class="menu-qr-wrap">
+    <div class="qr-box">
+      <img src="assets/lychee-menu-qr.png" alt="LYCHEE Menu QR Code" class="qr-code-img">
+      <div class="qr-label">امسح الـ QR للدخول للمنيو 📱</div>
+      <a href="assets/lychee-menu-qr.png" download="lychee-menu-qr.png" class="qr-download-btn">⬇️ تحميل كود الـ QR للطباعة</a>
+    </div>
+  </div>
+
+  <a class="cta" href="https://wa.me/201080678293" rel="noopener" target="_blank">💬 اطلب الآن عبر واتساب</a>
+</footer>
 <script>
 const buttons=[...document.querySelectorAll('.tabs button')];
 const sections=[...document.querySelectorAll('.section')];
