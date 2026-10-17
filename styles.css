@@ -1263,3 +1263,31 @@ body {
   }
 }
 
+/* شاشة افتتاح المنيو */
+.intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: radial-gradient(circle at 50% 40%, #3c2519, #100c0a 70%);
+  color: #f6dfcf;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  transition: opacity .4s ease, visibility .4s ease;
+}
+.intro-splash img {
+  width: min(240px, 65vw);
+  filter: drop-shadow(0 12px 20px rgba(0,0,0,.45));
+  animation: introLogo .9s cubic-bezier(.2,.9,.25,1.15);
+}
+.intro-splash.hide { opacity: 0; visibility: hidden; }
+@keyframes introLogo {
+  from { opacity: 0; transform: translateY(18px) scale(.88); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
