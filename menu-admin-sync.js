@@ -189,6 +189,51 @@
     document.querySelector('.product-sheet')?.classList.add('open');
   }
 
+  const defaultOffers = [
+    {
+      id: 'offer-1',
+      name: 'عرض سوبر ليتشي كومبو',
+      price: 145,
+      category: 'Mix Crepe',
+      isOffer: true,
+      description: 'كريب ميكس لحوم ولتشي + فرايز شيدر لارج + بيبسي مثلج',
+      image: 'images/WhatsApp Image 2026-09-07 at 1.42.01 AM.jpeg',
+      sizes: [],
+      addons: [
+        { name: 'صوص رانش إضافي', price: 15 },
+        { name: 'هالبينو حار', price: 10 }
+      ]
+    },
+    {
+      id: 'offer-2',
+      name: 'عرض ميكس الصحاب',
+      price: 235,
+      category: 'Mix Crepe',
+      isOffer: true,
+      description: '2 كريب ميكس فراخ وميت + بطاطس عائلية تشيز + 2 صوص خاص',
+      image: 'images/WhatsApp Image 2026-09-07 at 1.42.02 AM.jpeg',
+      sizes: [],
+      addons: [
+        { name: 'جبنة موتزاريلا دبل', price: 20 },
+        { name: 'صوص تيستي', price: 15 }
+      ]
+    },
+    {
+      id: 'offer-3',
+      name: 'عرض سماش & كرانشي',
+      price: 175,
+      category: 'Smash Burger',
+      isOffer: true,
+      description: 'ساندوتش سماش برجر دبل + ساندوتش سوبر كرانشي + بطاطس وبيبسي',
+      image: 'images/WhatsApp Image 2026-09-07 at 1.42.03 AM.jpeg',
+      sizes: [],
+      addons: [
+        { name: 'بيكون لحم بقري مدخن', price: 20 },
+        { name: 'شيدر صوص', price: 15 }
+      ]
+    }
+  ];
+
   // Handle Offers Section (Auto-scroll every 5s)
   const offersSection = document.querySelector('#offers-section');
   const offersTrack = document.querySelector('#offers-track');
@@ -197,10 +242,16 @@
   const offerPrev = document.querySelector('#offer-prev');
   const offerNext = document.querySelector('#offer-next');
 
-  const offerItems = products.filter(p => p.isOffer);
+  const customOffers = products.filter(p => p.isOffer);
   const regularItems = products.filter(p => !p.isOffer);
 
-  // If there are no offers, keep section hidden / empty
+  // بيانات localStorage تخص المتصفح الحالي فقط. لذلك قد يصل العميل من
+  // الموبايل بقائمة محفوظة بلا عروض، بينما تظهر العروض على جهاز آخر.
+  // نعرض العروض الافتراضية دائمًا عند عدم وجود عروض مخصصة حتى لا يختفي
+  // القسم باختلاف الجهاز.
+  const offerItems = customOffers.length > 0 ? customOffers : defaultOffers;
+
+  // Render Offers Section
   if (offersSection && offersTrack) {
     if (!offerItems.length) {
       offersSection.style.display = 'none';
@@ -218,11 +269,13 @@
           }
         });
 
+        const tagText = item.name.includes('صحاب') ? '🔥 عرض التوفير' : (item.name.includes('سماش') ? '🔥 أقوى عرض' : '🔥 عرض خاص');
+
         const card = document.createElement('article');
         card.className = 'offer-card managed-offer-card';
         card.dataset.search = `${item.name} ${item.description || ''} ${item.category || ''}`;
         card.innerHTML = `
-          <span class="offer-card-tag">🔥 عرض خاص</span>
+          <span class="offer-card-tag">${tagText}</span>
           <div class="offer-card-img-wrap">
             <img class="offer-card-img" src="${escape(item.image || 'assets/lychee-logo-cutout.png')}" alt="${escape(item.name)}">
           </div>

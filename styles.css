@@ -851,6 +851,7 @@ body {
 
 /* الحاوية الرئيسية */
 .offers-section {
+  display: block;
   margin: 14px 0 22px;
   position: relative;
   border-radius: 20px;
@@ -1144,3 +1145,99 @@ body {
     height: 220px;
   }
 }
+
+/* ==== شاشات الموبايل (عرض مخصص ومريح للأجهزة الذكية) ==== */
+@media (max-width: 480px) {
+  .offers-section {
+    margin: 10px 0 18px;
+    border-radius: 16px;
+  }
+  .offers-head {
+    padding: 8px 12px;
+  }
+  .offers-title h2 {
+    font-size: 13.5px;
+  }
+  .offers-flame {
+    font-size: 16px;
+  }
+  .offers-badge {
+    font-size: 9px;
+    padding: 2px 7px;
+  }
+  .offer-nav-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 15px;
+  }
+  .offer-card {
+    height: 165px;
+  }
+  .offer-card-img-wrap {
+    flex: 0 0 46%;
+  }
+  .offer-card-body {
+    flex: 0 0 54%;
+    padding: 8px 12px 8px 6px;
+    gap: 2px;
+  }
+  .offer-card-tag {
+    font-size: 9px;
+    padding: 2px 7px;
+    margin-bottom: 2px;
+  }
+  .offer-card-name {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+  .offer-card-desc {
+    font-size: 10px;
+    line-height: 1.35;
+    -webkit-line-clamp: 2;
+  }
+  .offer-card-footer {
+    gap: 6px;
+    margin-top: 3px;
+  }
+  .offer-card-price {
+    font-size: 15px;
+    padding: 3px 8px;
+    border-radius: 10px;
+  }
+  .offer-card-price small {
+    font-size: 9px;
+  }
+  .offer-card-btn {
+    padding: 5px 10px;
+    font-size: 10.5px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .offer-card {
+    height: 155px;
+  }
+  .offer-card-img-wrap {
+    flex: 0 0 42%;
+  }
+  .offer-card-body {
+    flex: 0 0 58%;
+    padding: 6px 8px 6px 4px;
+  }
+  .offer-card-name {
+    font-size: 12.5px;
+  }
+  .offer-card-desc {
+    font-size: 9px;
+  }
+  .offer-card-price {
+    font-size: 13.5px;
+    padding: 2px 6px;
+  }
+  .offer-card-btn {
+    padding: 4px 7px;
+    font-size: 9.5px;
+  }
+}
+

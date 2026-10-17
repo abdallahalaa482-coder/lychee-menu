@@ -117,20 +117,68 @@ const categoryMigration = {
   'بيتزا': 'Pizza'
 };
 
-const initialProducts = catalog.map(([name, price, category], index) => ({
-  id: `menu-${index}`,
-  name,
-  price,
-  category,
-  isOffer: false,
-  description: '',
-  image: menuImages[index % menuImages.length],
-  sizes: [],
-  addons: [
-    { name: 'جبنة إضافية', price: 15 },
-    { name: 'صوص إضافي', price: 10 }
-  ]
-}));
+const defaultOffers = [
+  {
+    id: 'offer-1',
+    name: 'عرض سوبر ليتشي كومبو',
+    price: 145,
+    category: 'Mix Crepe',
+    isOffer: true,
+    description: 'كريب ميكس لحوم ولتشي + فرايز شيدر لارج + بيبسي مثلج',
+    image: 'images/WhatsApp Image 2026-09-07 at 1.42.01 AM.jpeg',
+    sizes: [],
+    addons: [
+      { name: 'صوص رانش إضافي', price: 15 },
+      { name: 'هالبينو حار', price: 10 }
+    ]
+  },
+  {
+    id: 'offer-2',
+    name: 'عرض ميكس الصحاب',
+    price: 235,
+    category: 'Mix Crepe',
+    isOffer: true,
+    description: '2 كريب ميكس فراخ وميت + بطاطس عائلية تشيز + 2 صوص خاص',
+    image: 'images/WhatsApp Image 2026-09-07 at 1.42.02 AM.jpeg',
+    sizes: [],
+    addons: [
+      { name: 'جبنة موتزاريلا دبل', price: 20 },
+      { name: 'صوص تيستي', price: 15 }
+    ]
+  },
+  {
+    id: 'offer-3',
+    name: 'عرض سماش & كرانشي',
+    price: 175,
+    category: 'Smash Burger',
+    isOffer: true,
+    description: 'ساندوتش سماش برجر دبل + ساندوتش سوبر كرانشي + بطاطس وبيبسي',
+    image: 'images/WhatsApp Image 2026-09-07 at 1.42.03 AM.jpeg',
+    sizes: [],
+    addons: [
+      { name: 'بيكون لحم بقري مدخن', price: 20 },
+      { name: 'شيدر صوص', price: 15 }
+    ]
+  }
+];
+
+const initialProducts = [
+  ...defaultOffers,
+  ...catalog.map(([name, price, category], index) => ({
+    id: `menu-${index}`,
+    name,
+    price,
+    category,
+    isOffer: false,
+    description: '',
+    image: menuImages[index % menuImages.length],
+    sizes: [],
+    addons: [
+      { name: 'جبنة إضافية', price: 15 },
+      { name: 'صوص إضافي', price: 10 }
+    ]
+  }))
+];
 
 const getProducts = () => {
   const raw = localStorage.getItem(PRODUCTS_KEY);
@@ -149,6 +197,12 @@ const getProducts = () => {
         p.isOffer = false;
       }
     });
+    // If the list has no offer products at all, add default offers so admin can manage them
+    const hasAnyOffer = list.some(p => p.isOffer);
+    if (!hasAnyOffer) {
+      list.unshift(...defaultOffers);
+      changed = true;
+    }
     if (changed) saveProducts(list);
     return list;
   } catch (e) {

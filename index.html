@@ -30,7 +30,7 @@ footer{position:relative;overflow:hidden;background:#090909;color:#fff;margin-to
 @media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.grid{grid-template-columns:repeat(2,1fr);gap:10px}.card-img{height:130px}.card-body{padding:11px}.name h3{font-size:15px}.price{font-size:14px}.section h2{font-size:20px}}
 @media(max-width:420px){.grid{grid-template-columns:1fr 1fr}.card-img{height:120px}.wrap{padding:0 10px 25px}.tabs button{padding:10px 12px}.brand-logo{width:78vw}}
 </style>
-<link href="styles.css" rel="stylesheet"/>
+<link href="styles.css?v=7" rel="stylesheet"/>
 </head>
 <body>
 <header class="hero">
@@ -65,7 +65,7 @@ footer{position:relative;overflow:hidden;background:#090909;color:#fff;margin-to
   </button>
 </div>
 <!-- قسم العروض الحصرية والمربعات المتحركة -->
-<section class="offers-section" id="offers-section" style="display: none;">
+<section class="offers-section" id="offers-section">
   <div class="offers-head">
     <div class="offers-title">
       <span class="offers-flame">🔥</span>
@@ -78,9 +78,58 @@ footer{position:relative;overflow:hidden;background:#090909;color:#fff;margin-to
     </div>
   </div>
   <div class="offers-carousel" id="offers-carousel">
-    <div class="offers-track" id="offers-track"></div>
+    <div class="offers-track" id="offers-track">
+      <article class="offer-card" data-offer-id="offer-1">
+        <span class="offer-card-tag">🔥 عرض خاص</span>
+        <div class="offer-card-img-wrap">
+          <img class="offer-card-img" src="images/WhatsApp Image 2026-09-07 at 1.42.01 AM.jpeg" alt="عرض سوبر ليتشي كومبو" loading="eager">
+        </div>
+        <div class="offer-card-body">
+          <h3 class="offer-card-name">عرض سوبر ليتشي كومبو</h3>
+          <p class="offer-card-desc">كريب ميكس لحوم ولتشي + فرايز شيدر لارج + بيبسي مثلج</p>
+          <div class="offer-card-footer">
+            <span class="offer-card-price">145 <small>جنيه</small></span>
+            <button class="offer-card-btn" type="button">اطلب العرض</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="offer-card" data-offer-id="offer-2">
+        <span class="offer-card-tag">🔥 عرض التوفير</span>
+        <div class="offer-card-img-wrap">
+          <img class="offer-card-img" src="images/WhatsApp Image 2026-09-07 at 1.42.02 AM.jpeg" alt="عرض ميكس الصحاب" loading="lazy">
+        </div>
+        <div class="offer-card-body">
+          <h3 class="offer-card-name">عرض ميكس الصحاب</h3>
+          <p class="offer-card-desc">2 كريب ميكس فراخ وميت + بطاطس عائلية تشيز + 2 صوص خاص</p>
+          <div class="offer-card-footer">
+            <span class="offer-card-price">235 <small>جنيه</small></span>
+            <button class="offer-card-btn" type="button">اطلب العرض</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="offer-card" data-offer-id="offer-3">
+        <span class="offer-card-tag">🔥 أقوى عرض</span>
+        <div class="offer-card-img-wrap">
+          <img class="offer-card-img" src="images/WhatsApp Image 2026-09-07 at 1.42.03 AM.jpeg" alt="عرض سماش &amp; كرانشي" loading="lazy">
+        </div>
+        <div class="offer-card-body">
+          <h3 class="offer-card-name">عرض سماش &amp; كرانشي</h3>
+          <p class="offer-card-desc">ساندوتش سماش برجر دبل + ساندوتش سوبر كرانشي + بطاطس وبيبسي</p>
+          <div class="offer-card-footer">
+            <span class="offer-card-price">175 <small>جنيه</small></span>
+            <button class="offer-card-btn" type="button">اطلب العرض</button>
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
-  <div class="offers-dots" id="offers-dots"></div>
+  <div class="offers-dots" id="offers-dots">
+    <button type="button" class="offers-dot active" aria-label="العرض 1"></button>
+    <button type="button" class="offers-dot" aria-label="العرض 2"></button>
+    <button type="button" class="offers-dot" aria-label="العرض 3"></button>
+  </div>
 </section>
 <div class="today-question">بتفكر تاكل إيه النهاردة؟ 😋</div>
 <div class="tabs" id="tabs">
@@ -277,7 +326,7 @@ function render(){
 buttons.forEach(b=>b.onclick=()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');cat=b.dataset.cat;render()});
 search.oninput=render;
 </script>
-<script src="app.js"></script>
-<script src="menu-admin-sync.js"></script>
+<script src="app.js?v=7"></script>
+<script src="menu-admin-sync.js?v=7"></script>
 </body>
 </html>
