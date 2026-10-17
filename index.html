@@ -30,7 +30,7 @@ footer{position:relative;overflow:hidden;background:#090909;color:#fff;margin-to
 @media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.grid{grid-template-columns:repeat(2,1fr);gap:10px}.card-img{height:130px}.card-body{padding:11px}.name h3{font-size:15px}.price{font-size:14px}.section h2{font-size:20px}}
 @media(max-width:420px){.grid{grid-template-columns:1fr 1fr}.card-img{height:120px}.wrap{padding:0 10px 25px}.tabs button{padding:10px 12px}.brand-logo{width:78vw}}
 </style>
-<link href="styles.css?v=9" rel="stylesheet"/>
+<link href="styles.css?v=14" rel="stylesheet"/>
 </head>
 <body>
 <header class="hero">
@@ -129,18 +129,26 @@ footer{position:relative;overflow:hidden;background:#090909;color:#fff;margin-to
 </section>
 <div class="today-question">بتفكر تاكل إيه النهاردة؟ 😋</div>
 <div class="tabs" id="tabs">
-<button class="active" data-cat="all">الكل</button>
-<button data-cat="mix">Mix Crepe</button>
-<button data-cat="regular">Regular Crepe</button>
-<button data-cat="smash">Smash Burger</button>
-<button data-cat="box">Fries Box</button>
-<button data-cat="fries">Fries</button>
-<button data-cat="sandwich">Sandwich</button>
-<button data-cat="chicken-sandwich">Chicken Sandwich</button>
-<button data-cat="pizza-roll">Pizza Roll</button>
-<button data-cat="pizza">Pizza</button>
-<button data-cat="extra">Sauce &amp; Extra</button>
+<button class="active" data-cat="all"><span>✨</span> الكل</button>
+<button data-cat="mix"><span>🌯</span> Mix Crepe</button>
+<button data-cat="regular"><span>🌮</span> Regular Crepe</button>
+<button data-cat="smash"><span>🍔</span> Smash Burger</button>
+<button data-cat="box"><span>🍟</span> Fries Box</button>
+<button data-cat="fries"><span>🍟</span> Fries</button>
+<button data-cat="sandwich"><span>🥪</span> Sandwich</button>
+<button data-cat="chicken-sandwich"><span>🍗</span> Chicken Sandwich</button>
+<button data-cat="pizza-roll"><span>🍕</span> Pizza Roll</button>
+<button data-cat="pizza"><span>🍕</span> Pizza</button>
+<button data-cat="extra"><span>➕</span> Sauce &amp; Extra</button>
 </div>
+<section class="popular-section" aria-labelledby="popular-title">
+  <div class="popular-heading"><div><span>الأكثر طلبًا</span><h2 id="popular-title">اختيارات الناس المفضلة 🔥</h2></div><small>اسحب للمزيد</small></div>
+  <div class="popular-grid">
+    <article class="card popular-card" data-search="الوحش the monster"><img class="card-img" src="images/WhatsApp Image 2026-09-07 at 1.42.01 AM.jpeg" alt="كريب الوحش"><div class="card-body"><div class="name"><div><h3>الوحش</h3><span class="en">The Monster</span></div><span class="price">130</span></div><p class="desc">كريب ليتشي المميز</p></div></article>
+    <article class="card popular-card" data-search="سماش برجر كلاسيك classic smash burger"><img class="card-img" src="images/WhatsApp Image 2026-09-07 at 1.42.02 AM.jpeg" alt="سماش برجر كلاسيك"><div class="card-body"><div class="name"><div><h3>سماش كلاسيك</h3><span class="en">Classic Smash</span></div><span class="price">115</span></div><p class="desc">طعم السماش الأصلي</p></div></article>
+    <article class="card popular-card" data-search="الوحش فرايز monster fries"><img class="card-img" src="images/WhatsApp Image 2026-09-07 at 1.42.03 AM.jpeg" alt="الوحش فرايز"><div class="card-body"><div class="name"><div><h3>الوحش فرايز</h3><span class="en">Monster Fries</span></div><span class="price">80</span></div><p class="desc">بطاطس وصوص ليتشي</p></div></article>
+  </div>
+</section>
 <div id="menu">
 <section class="section" data-section="mix">
 <h2>Mix Crepe</h2><div class="grid">
@@ -298,6 +306,7 @@ sections.forEach(s => {
 
 function render(){
   const q=search.value.trim().toLowerCase();
+  document.querySelector('.popular-section').style.display=cat==='all'&&!q?'block':'none';
   let shown=0;
   sections.forEach(s=>{
     const matchCat=cat==='all'||s.dataset.section===cat;
@@ -314,7 +323,7 @@ function render(){
 buttons.forEach(b=>b.onclick=()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');cat=b.dataset.cat;render()});
 search.oninput=render;
 </script>
-<script src="app.js?v=9"></script>
+<script src="app.js?v=14"></script>
 <script src="menu-admin-sync.js?v=8"></script>
 </body>
 </html>

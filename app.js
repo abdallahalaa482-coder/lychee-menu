@@ -6,8 +6,14 @@ const saveCart = x => localStorage.setItem(CART_KEY, JSON.stringify(x));
 function updateCartCount() {
   let count = readCart().reduce((s, i) => s + i.quantity, 0);
   document.querySelectorAll('.cart-count').forEach(x => {
+    const changed = x.textContent !== String(count);
     x.textContent = count;
     x.style.display = count > 0 ? 'flex' : 'none';
+    if (changed && count > 0) {
+      x.classList.remove('count-pop');
+      void x.offsetWidth;
+      x.classList.add('count-pop');
+    }
   });
   document.querySelector('.view-cart')?.classList.toggle('show', count > 0);
 }
@@ -47,25 +53,35 @@ if (!document.querySelector('.product-sheet')) {
         <div class="sheet-content"></div>
       </div>
     </section>
-    <div class="toast">تمت الإضافة إلى السلة</div>
-    <button type="button" class="view-cart open-cart">
-      <span>عرض السلة</span>
+    <div class="toast"><span class="toast-check">✓</span><span>تمت الإضافة إلى السلة</span></div>
+    <button type="button" class="view-cart open-cart" aria-label="عرض سلة الطلبات">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.5L21 7H6.4M9 20.2h.01M17 20.2h.01"/></svg>
       <b class="cart-count">0</b>
     </button>
     <section class="cart-overlay" aria-hidden="true">
       <main class="cart-page">
         <header class="cart-header">
           <button class="back-button close-cart" type="button" aria-label="العودة للمنيو">›</button>
-          <div class="cart-title">
-            <span class="cart-title-icon">🛍️</span>
-            <div><h1>سلة الطلبات</h1><p>راجع طلبك قبل الإرسال</p></div>
-          </div>
+          <div class="cart-title"><h1>سلة الطلبات</h1></div>
           <button id="clear-cart" class="clear-cart" type="button">مسح الكل</button>
         </header>
         <section id="cart-content" class="cart-content"></section>
       </main>
     </section>
   `);
+}
+
+// شاشة افتتاح خفيفة، تظهر مرة واحدة لكل جلسة تصفح.
+if (!sessionStorage.getItem('lychee-intro-seen')) {
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="intro-splash" role="status" aria-label="مرحبًا بك في ليتشي">
+      <img src="assets/lychee-logo-cutout.png" alt="LYCHEE FOOD AND MORE">
+      <span>طعم مختلف في كل لقمة</span>
+    </div>
+  `);
+  sessionStorage.setItem('lychee-intro-seen', '1');
+  setTimeout(() => document.querySelector('.intro-splash')?.classList.add('hide'), 1150);
+  setTimeout(() => document.querySelector('.intro-splash')?.remove(), 1600);
 }
 
 let product, size, quantity, addons;
@@ -306,7 +322,7 @@ function renderCart() {
       <div class="summary-line"><span>المجموع الفرعي</span><span>${money(subtotal)}</span></div>
       <div class="summary-line"><span>رسوم التوصيل</span><span>تتغير حسب المنطقة</span></div>
       <div class="summary-total"><span>الإجمالي</span><strong>${money(subtotal)}</strong></div>
-      <button class="checkout" type="button" id="checkout"><span>أرسل الطلب عبر واتساب</span><strong>${money(subtotal)} ←</strong></button>
+      <button class="checkout" type="button" id="checkout"><span>إتمام الطلب عبر واتساب</span><strong>${money(subtotal)} ←</strong></button>
     </section>
   `;
 
